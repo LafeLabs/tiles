@@ -27,6 +27,7 @@
         "webeditor.html"
     ],
     "data": [
+        "board.txt",
         "controls.txt",
         "currentjson.txt",
         "dna.txt",

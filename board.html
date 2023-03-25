@@ -96,12 +96,19 @@ mytile = {
     "name":"Trash",
     "trajectory":"",
     "shape":"0225,",
-    "message":"hack the planet",
+    "message":"this is what anarchist social media looks like",
     "url":"https://www.trashrobot.org",
-    "relationships":[]
+    "relationships":[
+    {
+        "name":"trash",
+        "index":0,
+        "relationship":"Self"
+    }
+    ]
 };
 
 board = [];
+
 
 tile1 = JSON.parse(JSON.stringify(mytile));
 tile2 = JSON.parse(JSON.stringify(mytile));
@@ -114,23 +121,26 @@ tile8 = JSON.parse(JSON.stringify(mytile));
 tile9 = JSON.parse(JSON.stringify(mytile));
 tile10 = JSON.parse(JSON.stringify(mytile));
 
-board.push(tile1);
-board.push(tile2);
-board.push(tile3);
-board.push(tile4);
-board.push(tile5);
-board.push(tile6);
+//board.push(tile1);
+//board.push(tile2);
+//board.push(tile3);
+//board.push(tile4);
+//board.push(tile5);
+//board.push(tile6);
 //board.push(tile7);
 //board.push(tile8);
 //board.push(tile9);
 //board.push(tile10);
 
-board[1].trajectory = "0233,";
-board[2].trajectory = "0233,0233,";
-board[3].trajectory = "0233,0233,0233,";
-board[4].trajectory = "0233,0233,0233,0233,";
-board[5].trajectory = "0230,";
+//board[1].trajectory = "0233,";
+//board[2].trajectory = "0233,0233,";
+//board[3].trajectory = "0233,0233,0233,";
+//board[4].trajectory = "0233,0233,0233,0233,";
+//board[5].trajectory = "0230,";
 
+for(index = 0;index < board.length;index++){
+    board[index].index = index;
+}
 
 maincanvas = document.getElementById("maincanvas");
 var mainGVM = new GVM(maincanvas,0.5*innerWidth - 10,0.5*innerWidth -10);
@@ -157,14 +167,24 @@ mainGVM.importbytecode(keyboard);
 mainGVM.style.fill0 = "#00000040";
 mainGVM.style.fill2 = "#ff000040";
 
-myIndex = 5;
+
+myIndex = 0;
 
 
-drawmain();
+var httpboard = new XMLHttpRequest();
+httpboard.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        board = JSON.parse(this.responseText);
+        board.push(JSON.parse(JSON.stringify(mytile)));
+        myIndex = board.length - 1;
+        mainGVM.glyph = board[myIndex].trajectory + "0207,";
 
-mainGVM.glyph = board[myIndex].trajectory + "0207,";
+        drawmain();
 
-
+    }
+};
+httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
+httpboard.send();        
 
 
 function drawmain(){
@@ -207,6 +227,7 @@ document.getElementById("actioninput").onkeypress = function(a) {
     board[myIndex].trajectory = mainGVM.cleanGlyph;
     drawmain();
     document.getElementById("spellinput").value = mainGVM.cleanGlyph;
+    updateboard();
 }
 
 
@@ -249,7 +270,7 @@ document.getElementById("actioninput").onkeydown = function(a) {
     mainGVM.clean();
     board[myIndex].trajectory = mainGVM.cleanGlyph;
     drawmain();
-
+    updateboard();
 }
 
 if(innerWidth > innerHeight){
@@ -328,7 +349,42 @@ function loadcontroltable(){
 }
 
 
+function update(){
+    //1. load existing data/board.txt file
+    //2. update element in myIndex
+    //3. save data/board.txt
+}
 
+function saveboard(){
+   // mainGVM.clean();
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php
+}
+
+
+function updateboard(){
+    var httpboard = new XMLHttpRequest();
+    httpboard.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            oldboard = JSON.parse(this.responseText);
+            oldboard[myIndex] = board[myIndex];
+            board = oldboard;
+            for(index = 0;index < board.length;index++){
+                board[index].index = index;
+            }
+            var url = "filesaver.php";        
+            var httpc = new XMLHttpRequest();
+            httpc.open("POST", url, true);
+            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php            
+        }
+    };
+    httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
+    httpboard.send();        
+}
 
 </script>
 <style>
