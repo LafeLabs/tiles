@@ -1,0 +1,242 @@
+[
+    {
+        "index": 0,
+        "name": "Trash",
+        "trajectory": "",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 1,
+        "name": "Trash",
+        "trajectory": "0233,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 2,
+        "name": "Trash",
+        "trajectory": "0233,0233,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 3,
+        "name": "Trash",
+        "trajectory": "0233,0233,0233,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 4,
+        "name": "Trash",
+        "trajectory": "0233,0233,0233,0233,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 5,
+        "name": "Trash",
+        "trajectory": "0230,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 6,
+        "name": "Trash",
+        "trajectory": "0231,0233,0233,0231,0232,0232,0232,0232,",
+        "shape": "0224,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 7,
+        "name": "Trash",
+        "trajectory": "0230,0232,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 8,
+        "name": "Trash",
+        "trajectory": "0231,0232,0230,0230,0233,0233,0233,0233,",
+        "shape": "0224,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 9,
+        "name": "Trash",
+        "trajectory": "",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 10,
+        "name": "Trash",
+        "trajectory": "0231,0233,0231,0232,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 11,
+        "name": "Trash",
+        "trajectory": "0232,0232,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 12,
+        "name": "Trash",
+        "trajectory": "0231,0232,0230,0233,0233,0233,0231,0232,0232,",
+        "shape": "0224,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 13,
+        "name": "Trash",
+        "trajectory": "0233,0231,0230,0230,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 14,
+        "name": "Trash",
+        "trajectory": "0231,0232,0230,0233,0233,0233,0231,0232,0232,0232,",
+        "shape": "0224,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    },
+    {
+        "index": 15,
+        "name": "Trash",
+        "trajectory": "0231,0230,0230,0233,0231,0232,0232,",
+        "shape": "0225,",
+        "message": "this is what anarchist social media looks like",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "trash",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ]
+    }
+]

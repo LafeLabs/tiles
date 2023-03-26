@@ -5,6 +5,7 @@
         "font.html",
         "fork.html",
         "forkdestroyer.html",
+        "home.html",
         "hypercube.html",
         "index.html",
         "keyboard.html",
