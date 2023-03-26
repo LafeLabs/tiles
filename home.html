@@ -32,10 +32,10 @@
         <td id  = "reload" class = "button">RELOAD!</td>
         <td  id = "cycleshape" class = "button">CYCLE SHAPE!</td>
         <td style = "display:none" id = "deleteme" class = "button">DELETE ME!</td>
-        <td style = "display:none"  id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
+        <td id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
     </tr>
 </table>
-<table id = "toptable">
+<table id = "controltable">
 </table>
 
 <div id = "geometronbox">
@@ -50,12 +50,17 @@ body{
     position:absolute;
     right:0px;
     top:0px;
-    border:solid;
+    z-index:-1;
 }
 #buttontable td{
     border:solid;
     text-align:center;
     border-radius:5px;
+}
+#controltable{
+    position:absolute;
+    left:0px;
+    bottom:0px;
 }
 .button{
     cursor:pointer;
@@ -73,6 +78,9 @@ body{
     width:10px;
 }
 @media only screen and (orientation: portrait) {
+    #actioninput{
+        display:none;
+    }
 }
 </style>
 
@@ -108,48 +116,23 @@ mytile = {
 };
 
 board = [];
-
-
 tile1 = JSON.parse(JSON.stringify(mytile));
-tile2 = JSON.parse(JSON.stringify(mytile));
-tile3 = JSON.parse(JSON.stringify(mytile));
-tile4 = JSON.parse(JSON.stringify(mytile));
-tile5 = JSON.parse(JSON.stringify(mytile));
-tile6 = JSON.parse(JSON.stringify(mytile));
-tile7 = JSON.parse(JSON.stringify(mytile));
-tile8 = JSON.parse(JSON.stringify(mytile));
-tile9 = JSON.parse(JSON.stringify(mytile));
-tile10 = JSON.parse(JSON.stringify(mytile));
-
-//board.push(tile1);
-//board.push(tile2);
-//board.push(tile3);
-//board.push(tile4);
-//board.push(tile5);
-//board.push(tile6);
-//board.push(tile7);
-//board.push(tile8);
-//board.push(tile9);
-//board.push(tile10);
-
-//board[1].trajectory = "0233,";
-//board[2].trajectory = "0233,0233,";
-//board[3].trajectory = "0233,0233,0233,";
-//board[4].trajectory = "0233,0233,0233,0233,";
-//board[5].trajectory = "0230,";
-
-for(index = 0;index < board.length;index++){
-    board[index].index = index;
-}
 
 maincanvas = document.getElementById("maincanvas");
-var mainGVM = new GVM(maincanvas,0.5*innerWidth - 10,0.5*innerWidth -10);
 
+square = 100;
+if(innerWidth > innerHeight){
+    square = innerHeight;
+}
+else{
+    square = innerWidth;
+}
+
+var mainGVM = new GVM(maincanvas,square,square);
 
 
 //keyboard : asdw, zxcv, jkli uo, colors 1234567 
 
-//    "0230,0232,010,0233,0231,"
 
 keyboard = [
     "041:0177,",
@@ -256,7 +239,7 @@ mainGVM.style.fill0 = "#00000040";
 mainGVM.style.fill2 = "#ff000040";//red
 mainGVM.style.fill3 = "#FFA50040";//orange
 mainGVM.style.fill4 = "#FFFF0040";//yellow
-mainGVM.style.fill5 = "#FF000040";//green
+mainGVM.style.fill5 = "#00ff0040";//green
 mainGVM.style.fill6 = "#0000ff40";//blue
 mainGVM.style.fill7 = "#FF00ff40";//purple
 
@@ -333,18 +316,19 @@ if(innerWidth > innerHeight){
 
 
 topcontrols  = [
-    "030,031,032,033,034,035,036,037,",
+    "0330,0331,0334,0335,010,",
     "0320,0322,0323,0324,0325,0326,0327,",
-    "0330,0331,0334,0335,010,"
+    "030,031,032,033,",
+    "034,035,036,037,"
 ];
 
 
-controlbuttonsize = 40;
+controlbuttonsize = 80;
 
-document.getElementById("toptable").innerHTML = "";
+document.getElementById("controltable").innerHTML = "";
 for(var index = 0;index < topcontrols.length;index++){
     var newtr = document.createElement("TR");
-    document.getElementById("toptable").appendChild(newtr);
+    document.getElementById("controltable").appendChild(newtr);
     rowarray = topcontrols[index].split(",");
     for(var rowindex = 0;rowindex < rowarray.length;rowindex++){
         if(rowarray[rowindex].length > 0){
