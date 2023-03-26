@@ -30,23 +30,51 @@
 <table id = "buttontable">
     <tr>
         <td id  = "reload" class = "button">RELOAD!</td>
-        <td id = "cycleshape" class = "button">CYCLE SHAPE!</td>
-        <td id = "deleteme" class = "button">DELETE ME!</td>
-        <td id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
+        <td  id = "cycleshape" class = "button">CYCLE SHAPE!</td>
+        <td style = "display:none" id = "deleteme" class = "button">DELETE ME!</td>
+        <td style = "display:none"  id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
     </tr>
 </table>
 <table id = "toptable">
 </table>
 
-<div id = "mainbox">
-    <div id = "geometronbox">
-        <canvas id = "maincanvas"></canvas>
-    </div>
+<div id = "geometronbox">
+<canvas id = "maincanvas"></canvas>
 </div>
 
-<table id = "bottomtable">
-</table>
-
+<style>
+body{
+    overflow:hidden;
+}
+#geometronbox{
+    position:absolute;
+    right:0px;
+    top:0px;
+    border:solid;
+}
+#buttontable td{
+    border:solid;
+    text-align:center;
+    border-radius:5px;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+#actioninput{
+    width:10px;
+}
+@media only screen and (orientation: portrait) {
+}
+</style>
 
 <script>
 
@@ -306,14 +334,10 @@ if(innerWidth > innerHeight){
 
 topcontrols  = [
     "030,031,032,033,034,035,036,037,",
-    "0320,0322,0323,0324,0325,0326,0327,"
+    "0320,0322,0323,0324,0325,0326,0327,",
+    "0330,0331,0334,0335,010,"
 ];
 
-bottomcontrols  = [
-    "0177,0330,0177,",
-    "0334,0331,0335,",
-    "0177,010,0177,"
-];
 
 controlbuttonsize = 40;
 
@@ -371,59 +395,6 @@ for(var index = 0;index < topcontrols.length;index++){
     }
 }
 
-document.getElementById("bottomtable").innerHTML = "";
-for(var index = 0;index < bottomcontrols.length;index++){
-    var newtr = document.createElement("TR");
-    document.getElementById("bottomtable").appendChild(newtr);
-    rowarray = bottomcontrols[index].split(",");
-    for(var rowindex = 0;rowindex < rowarray.length;rowindex++){
-        if(rowarray[rowindex].length > 0){
-            var newtd = document.createElement("TD");
-            newtr.appendChild(newtd);
-            var newcan = document.createElement("CANVAS");
-            newtd.appendChild(newcan);
-            var datadiv = document.createElement("div");
-            datadiv.innerHTML = rowarray[rowindex];
-            datadiv.className = "data";
-            newtd.appendChild(datadiv);
-            var newGVM = new GVM(newcan,controlbuttonsize,controlbuttonsize);
-            newGVM.unit = controlbuttonsize - 2;
-            newGVM.x0 = 1;
-            newGVM.y0 = controlbuttonsize-1;
-            newGVM.importbytecode(hypercube);
-            newGVM.importbytecode(shapestack);
-            newGVM.action(0300);
-            if(parseInt(rowarray[rowindex],8) >= 040 && parseInt(rowarray[rowindex],8) < 0177){
-                newGVM.drawGlyph("0300,0336,0336,0330,0333,0337,");
-            }
-            newGVM.action(parseInt(rowarray[rowindex],8)+01000);
-
-            newtd.onclick = function(){
-                var localaction = parseInt(this.getElementsByClassName("data")[0].innerHTML,8);
-                if(localaction != 022 && localaction != 023){
-                    if(localaction >= 040 && localaction < 0177){
-                        localaction += 01000;
-                    }
-                    mainGVM.cursorAction(localaction);
-                }
-                if(localaction == 022){
-                    previous();
-                }
-                if(localaction == 023){
-                    next();
-                }
-                                                    
-                mainGVM.clean();
-                board[myIndex].trajectory = mainGVM.cleanGlyph;
-                updateboard();
-                drawmain();
-
-
-            }
-            newcan.classList.add("button");
-        }
-    }
-}
 
 document.getElementById("cycleshape").onclick = function(){
     newshape = "0220,";
@@ -530,143 +501,5 @@ document.getElementById("deleteme").onclick = function(){
 }
 
 </script>
-<style>
-body{
-    overflow:hidden;
-}
-#buttontable td{
-    border:solid;
-    text-align:center;
-    border-radius:5px;
-}
-#header{
-    height:40px;
-    position:absolute;
-    left:0px;
-    width:100%;
-    top:0px;
-}
-#header img{
-    width:36px;
-}
-#geometronbox{
-    position:absolute;
-    right:0px;
-    top:0px;
-    border:solid;
-}
-#mainbox{
-    position:absolute;
-    right:0px;
-    top:40px;
-    bottom:0px;
-    width:50%;
-    border-left:solid;
-    border-color:blue;
-    overflow:scroll;
-}
-#controlbox{
-    position:absolute;
-    top:40px;
-    left:0px;
-    width:50%;
-    overflow:scroll;
-    bottom:50%;
-    border-bottom:solid;
-    border-top:solid;
-    border-color:red;
-}
-#spellbox{
-    position:absolute;
-    left:0px;
-    bottom:0px;
-    width:50%;
-    top:50%;
-    border:solid;
-    border-color:green;
-    overflow:scroll;
-}
-#spellcanvasbox{
-    position:absolute;
-    left:0px;
-    border-top:solid;
-    border:color:blue;
-    top:40px;
-}
-
-.uploadimage{
-    max-width:50%;
-}
-.deletebutton{
-    width:40px;
-}
-.button{
-    cursor:pointer;
-}
-.button:hover{
-    background-color:green;
-}
-.button:active{
-    background-color:yellow;
-}
-.data{
-    display:none;
-}
-#spellbox input{
-    font-size:12px;
-    font-family:courier;
-}
-#actioninput{
-    width:10px;
-}
-#spellinput{
-    width:40em;
-}
-#modeindicator{
-    width:25px;
-}
-@media only screen and (orientation: portrait) {
-    #header{
-        height:80px;
-        position:absolute;
-        left:0px;
-        width:100%;
-        top:0px;
-    }
-    #header img{
-        width:70px;
-    }
-    #mainbox{
-        position:absolute;
-        right:0px;
-        top:80px;
-        bottom:50%;
-        width:100%;
-        border-bottom:solid;
-        border-color:blue;
-        overflow:scroll;
-    }
-    #controlbox{
-        position:absolute;
-        top:50%;
-        left:0px;
-        width:100%;
-        overflow:scroll;
-        bottom:25%;
-        border-bottom:solid;
-        border-color:red;
-    }
-    #spellbox{
-        position:absolute;
-        left:0px;
-        bottom:0px;
-        width:100%;
-        top:75%;
-        border:solid;
-        border-color:green;
-        overflow:scroll;
-    }
-}
-</style>
 </body>
 </html>
