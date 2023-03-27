@@ -34,22 +34,12 @@
         <td style = "display:none" id = "deleteme" class = "button">DELETE ME!</td>
         <td id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
     </tr>
-    <tr>
-        <td>MY NAME:</td>
-        <td><input id = "nameinput"/></td>
-    </tr>
-    <tr>
-        <td>MY LINK:</td>
-        <td><input id = "urlinput"/></td>
-    </tr>
-
 </table>
 <table id = "controltable">
 </table>
 
 <div id = "geometronbox">
 <canvas id = "maincanvas"></canvas>
-<div id = "linkbox"></div>
 </div>
 
 <style>
@@ -61,19 +51,6 @@ body{
     right:0px;
     top:0px;
     z-index:-1;
-}
-#linkbox{
-    position:absolute;
-    left:0px;
-    top:0px;
-    width:100%;
-    height:100%;
-    overflow:none;
-}
-#linkbox a{
-    position:absolute;
-    border:solid;
-    z-index:1;
 }
 #buttontable td{
     border:solid;
@@ -109,14 +86,13 @@ body{
 
 <script>
 
-
-
-//0305,0350,0362,0203,0334,0334,0203,0334,0334,0334,0203,0334,0334,0203,0363,0334,0334,0334,
 shapestack = [
-    "0220:0305,0350,0362,0203,0334,0334,0203,0334,0334,0334,0203,0334,0334,0203,0363,0334,0334,0334,0334,0311,0337,0313,0336,0330,",
-        "0221:0305,0350,0362,0203,0335,0335,0203,0335,0335,0335,0203,0335,0335,0203,0335,0335,0363,0335,0335,0311,0337,0313,0336,0330,",
-        "0222:0305,0350,0362,0203,0334,0203,0334,0334,0334,0334,0203,0334,0203,0363,0334,0334,0334,0334,0330,0334,0334,0334,0311,0336,0313,0336,0330,0337,",
-        "0223:0305,0350,0362,0203,0335,0203,0335,0335,0335,0335,0203,0335,0203,0363,0335,0335,0335,0335,0330,0335,0335,0335,0311,0336,0313,0336,0330,0337,",
+    "0220:0306,0362,0203,0334,0350,0334,0312,0336,0203,0335,0335,0203,0334,0334,0334,0337,0203,0334,0334,0203,0335,0335,0335,0336,0203,0334,0334,0334,0334,0335,0335,0203,0334,0334,0334,0337,0203,0334,0334,0203,0335,0335,0335,0336,0203,0334,0334,0203,0203,0334,0334,0203,0334,0334,0334,0337,0203,0363,0335,0335,",
+        "0221:0306,0362,0203,0335,0350,0335,0312,0336,0203,0334,0334,0203,0335,0335,0335,0337,0203,0335,0335,0203,0334,0334,0334,0336,0203,0335,0335,0203,0335,0335,0335,0337,0203,0335,0335,0203,0334,0334,0334,0336,0203,0335,0335,0203,0203,0335,0335,0203,0335,0335,0335,0337,0203,0363,0335,0335,",
+        "0230:0313,0336,0312,0336,0313,0337,0306,0350,0335,0306,0330,0335,0335,0201,0335,0201,0335,0201,0335,0201,0335,0201,0335,0201,0334,0331,0342,0335,0342,0335,0342,0335,0342,0335,0342,0335,0342,0350,0335,0336,0312,0337,0342,0335,0335,0342,0335,0335,0342,0335,0335,0342,0335,0335,0342,0335,0335,0342,0335,0335,0335,0306,0336,0313,0337,0350,0334,0306,0313,0336,0312,0337,0313,0337,",
+        "0231:0330,0230,",
+        "0232:0231,0231,0231,0231,0231,0231,0231,0231,0331,0331,0331,0331,0331,0331,0331,0333,0331,",
+        "0233:0306,0331,0331,0331,0333,0331,0332,0331,0332,0331,0332,0331,0332,0232,0232,0331,0232,0232,0331,0232,0232,0331,0232,0232,0331,0332,0332,0332,0331,0332,0331,0332,0331,0332,0331,0330,0330,0332,0332,0331,0331,0333,0330,0333,0330,0333,0330,",
         "01220:0333,0200,0336,0330,0332,0336,0331,0337,0220,0313,0304,0336,0331,0333,0333,0337,0337,",
         "01221:0333,0200,0336,0330,0332,0336,0331,0337,0221,0313,0304,0336,0331,0333,0333,0337,0337,",
         "01222:0333,0200,0336,0330,0332,0336,0331,0337,0222,0304,0336,0331,0333,0333,0337,0337,",
@@ -176,7 +152,7 @@ keyboard = [
     "055:0177,",
     "056:0177,",
     "057:0177,",
-    "060:035,",
+    "060:0177,",
     "061:0320,",
     "062:0322,",
     "063:0323,",
@@ -185,7 +161,7 @@ keyboard = [
     "066:0326,",
     "067:0327,",
     "070:0177,",
-    "071:034,",
+    "071:0177,",
     "072:0177,",
     "073:0177,",
     "074:0237,",
@@ -280,9 +256,6 @@ httpboard.onreadystatechange = function(){
         board.push(JSON.parse(JSON.stringify(mytile)));
         myIndex = board.length - 1;
         mainGVM.glyph = board[myIndex].trajectory + "0207,";
-        document.getElementById("nameinput").value = board[myIndex].name;
-        document.getElementById("urlinput").value = board[myIndex].url;
-
         drawmain();
 
     }
@@ -291,54 +264,18 @@ httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
 httpboard.send();        
 
 
-document.getElementById("nameinput").onchange = function(){
-    board[myIndex].name = this.value;
-    updateboard();
-    drawmain();
-}
-document.getElementById("urlinput").onchange = function(){
-    board[myIndex].url = this.value;
-    updateboard();
-    drawmain();    
-}
-
-
 function drawmain(){
-    document.getElementById("linkbox").innerHTML = 0;
-    mainGVM.drawGlyph("0300,");
+    mainGVM.drawGlyph("0300,0233,");
     for(var index = 0;index < board.length;index++){
         if(index != myIndex){
-            mainGVM.actionSequence("0300,0305,0350,");
+            mainGVM.actionSequence("0300,0306,0350,");
             mainGVM.actionSequence(board[index].trajectory);
             mainGVM.actionSequence(board[index].shape);
-            board[index].x = mainGVM.x;
-            board[index].y = mainGVM.y;
-            board[index].side = mainGVM.side;
-            if(board[index].side > 100){
-                var newa = document.createElement("A");
-                newa.href = board[index].url;
-                newa.innerHTML = board[index].name;
-                newa.style.left = board[index].x.toString() + "px";
-                newa.style.top = board[index].y.toString() + "px";
-                document.getElementById("linkbox").appendChild(newa);
-            }
         }
     }
-    mainGVM.actionSequence("0300,0305,0350,");
+    mainGVM.actionSequence("0300,0306,0350,");
     mainGVM.actionSequence(board[myIndex].trajectory);
     mainGVM.actionSequence(board[myIndex].shape);
-    board[myIndex].x = mainGVM.x;
-    board[myIndex].y = mainGVM.y;
-    board[myIndex].side = mainGVM.side;
-    if(board[myIndex].side > 100){
-        var newa = document.createElement("A");
-        newa.href = board[myIndex].url;
-        newa.innerHTML = board[myIndex].name;
-        newa.style.left = board[myIndex].x.toString() + "px";
-        newa.style.top = board[myIndex].y.toString() + "px";
-        document.getElementById("linkbox").appendChild(newa);
-    }
-
     
 }
 
@@ -445,12 +382,6 @@ document.getElementById("cycleshape").onclick = function(){
         newshape = "0221,";
     }
     if(board[myIndex].shape == "0221,"){
-        newshape = "0222,";
-    }
-    if(board[myIndex].shape == "0222,"){
-        newshape = "0223,";
-    }
-    if(board[myIndex].shape == "0223,"){
         newshape = "0220,";
     }
     board[myIndex].shape = newshape;
@@ -522,10 +453,10 @@ document.getElementById("bottomtable").innerHTML = "";
             mainGVM.drawGlyph("0300,");
             for(var index = 0;index < board.length;index++){
                 if(board[index].shape == "0225,"){
-                    mainGVM.actionSequence("0300,0305,0350,");
+                    mainGVM.actionSequence("0300,0306,0350,");
                 }
                 else{
-                    mainGVM.actionSequence("0300,0305,0350,");
+                    mainGVM.actionSequence("0300,0306,0350,");
                 }
                 
                 mainGVM.actionSequence(board[index].trajectory);
