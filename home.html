@@ -321,7 +321,7 @@ document.getElementById("messageinput").onchange = function(){
 
 
 function drawmain(){
-    document.getElementById("linkbox").innerHTML = 0;
+    document.getElementById("linkbox").innerHTML = "";
     mainGVM.drawGlyph("0300,");
     for(var index = 0;index < board.length;index++){
         if(index != myIndex){
@@ -501,7 +501,8 @@ document.getElementById("nukeitfromorbit").onclick = function(){
     var httpc = new XMLHttpRequest();
     httpc.open("POST", url, true);
     httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php         
+    httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php      
+    myIndex = 0;
     drawmain();
 }
 
