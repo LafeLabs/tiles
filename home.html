@@ -25,6 +25,8 @@
 
 </head>
 <body>
+<a id = "readmelink" href  = "readme.html">ABOUT</a>
+<br>
 
 <input id  = "actioninput"/>
 <table id = "buttontable">
@@ -58,6 +60,12 @@
 <style>
 body{
     overflow:hidden;
+}
+#readmelink{
+    position:absolute;
+    right:10px;
+    top:10px;
+    color:#0000ff;
 }
 #geometronbox{
     position:absolute;
@@ -132,6 +140,8 @@ shapestack = [
         "01223:0333,0200,0336,0330,0332,0336,0331,0337,0223,0313,0304,0336,0333,0331,0333,0337,0337,"
 ];
 
+
+arrow = "0313,0304,0336,0362,0203,0336,0203,0364,0335,0312,0336,0330,0306,0334,0334,0313,0337,0362,0203,0334,0334,0203,0334,0334,0203,0363,0336,0331,0304,0334,0312,0337,0313,0331,0337,0331,0337,0305,0350,";
 
 
 mytile = {
@@ -351,6 +361,7 @@ function drawmain(){
     }
     mainGVM.actionSequence("0300,0305,0350,");
     mainGVM.actionSequence(board[myIndex].trajectory);
+    mainGVM.actionSequence(arrow);
     mainGVM.actionSequence(board[myIndex].shape);
     board[myIndex].x = mainGVM.x;
     board[myIndex].y = mainGVM.y;

@@ -1,10 +1,10 @@
 [
     {
         "index": 0,
-        "name": "me",
-        "trajectory": "0335,0335,0335,0335,0335,0335,0335,",
+        "name": "OSCAR THE GROUCH",
+        "trajectory": "",
         "shape": "0220,",
-        "message": "this is geometric social media",
+        "message": "I LIKE TRASH!",
         "url": "https://www.trashrobot.org",
         "relationships": [
             {
@@ -13,16 +13,16 @@
                 "relationship": "Self"
             }
         ],
-        "x": 387.56953289450445,
-        "y": 506.2233922046847,
+        "x": 387.5695328945044,
+        "y": 368.7766077953152,
         "side": 84.94678440936949
     },
     {
         "index": 1,
-        "name": "me",
-        "trajectory": "0335,0335,0335,0335,0335,",
+        "name": "CHAOS DAEMON",
+        "trajectory": "0335,0335,0322,",
         "shape": "0220,",
-        "message": "this is geometric social media",
+        "message": "SPREAD CHAOS EVERYWHERE",
         "url": "https://www.trashrobot.org",
         "relationships": [
             {
@@ -31,16 +31,16 @@
                 "relationship": "Self"
             }
         ],
-        "x": 487.43046710549555,
-        "y": 506.2233922046847,
+        "x": 487.4304671054956,
+        "y": 368.7766077953153,
         "side": 84.94678440936949
     },
     {
         "index": 2,
-        "name": "me",
-        "trajectory": "0334,0334,0334,",
-        "shape": "0223,",
-        "message": "this is geometric social media",
+        "name": "LUMPY SPACE PRINCESS",
+        "trajectory": "0326,0334,0334,0327,",
+        "shape": "0220,",
+        "message": "GET OFF MY LUMPS!",
         "url": "https://www.trashrobot.org",
         "relationships": [
             {
@@ -49,16 +49,16 @@
                 "relationship": "Self"
             }
         ],
-        "x": 337.6390657890089,
-        "y": 437.5,
-        "side": 64.89356881873896
+        "x": 356.71080714914945,
+        "y": 463.75000000000006,
+        "side": 84.94678440936949
     },
     {
         "index": 3,
-        "name": "me",
-        "trajectory": "0335,",
+        "name": "SLIME WIZARD",
+        "trajectory": "0326,0334,0334,0334,0334,",
         "shape": "0220,",
-        "message": "this is geometric social media",
+        "message": "SLIME!",
         "url": "https://www.trashrobot.org",
         "relationships": [
             {
@@ -67,34 +67,16 @@
                 "relationship": "Self"
             }
         ],
-        "x": 437.5,
-        "y": 352.55321559063054,
+        "x": 437.4999999999999,
+        "y": 522.4467844093697,
         "side": 84.94678440936949
     },
     {
         "index": 4,
-        "name": "me",
-        "trajectory": "0334,",
-        "shape": "0222,",
-        "message": "this is geometric social media",
-        "url": "https://www.trashrobot.org",
-        "relationships": [
-            {
-                "name": "me",
-                "index": 0,
-                "relationship": "Self"
-            }
-        ],
-        "x": 356.7108071491496,
-        "y": 378.8032155906306,
-        "side": 64.89356881873896
-    },
-    {
-        "index": 5,
-        "name": "me",
-        "trajectory": "0335,0335,0335,",
+        "name": "GREEN TILE",
+        "trajectory": "0322,0334,0334,0334,0334,0334,0334,0325,",
         "shape": "0220,",
-        "message": "this is geometric social media",
+        "message": "THIS TILE IS GREEN!",
         "url": "https://www.trashrobot.org",
         "relationships": [
             {
@@ -103,8 +85,8 @@
                 "relationship": "Self"
             }
         ],
-        "x": 886.6812320745067,
-        "y": 291.55217052082867,
-        "side": 472.2970973631462
+        "x": 647.0463598144581,
+        "y": 505.585739577625,
+        "side": 220.33008157154254
     }
 ]
