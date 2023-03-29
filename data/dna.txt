@@ -9,6 +9,7 @@
         "hypercube.html",
         "index.html",
         "keyboard.html",
+        "projector.html",
         "qrcode-page.html",
         "qrcode.html",
         "readme.html",

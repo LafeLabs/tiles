@@ -22,33 +22,12 @@
     <META NAME="robots" CONTENT="noindex,nofollow">
 <!--geometron javascript library-->
     <script src="jscode/geometron.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
 </head>
 <body>
 <a id = "readmelink" href  = "readme.html">ABOUT</a>
 <br>
-
 <input id  = "actioninput"/>
-<table id = "buttontable">
-    <tr>
-        <td id  = "reload" class = "button">RELOAD!</td>
-        <td  id = "cycleshape" class = "button">CYCLE SHAPE!</td>
-        <td style = "display:none" id = "deleteme" class = "button">DELETE ME!</td>
-        <td id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
-    </tr>
-    <tr>
-        <td>NAME:</td>
-        <td><input id = "nameinput"/></td>
-    </tr>
-    <tr>
-        <td>LINK:</td>
-        <td><input id = "urlinput"/></td>
-    </tr>
-    <tr>
-        <td>MESSAGE:</td>
-        <td><input id = "messageinput"/></td>
-    </tr>
-</table>
 <table id = "controltable">
 </table>
 
@@ -128,8 +107,6 @@ body{
 <script>
 
 
-
-//0305,0350,0362,0203,0334,0334,0203,0334,0334,0334,0203,0334,0334,0203,0363,0334,0334,0334,
 shapestack = [
     "0220:0305,0350,0362,0203,0334,0334,0203,0334,0334,0334,0203,0334,0334,0203,0363,0334,0334,0334,0334,0311,0337,0313,0336,0330,",
         "0221:0305,0350,0362,0203,0335,0335,0203,0335,0335,0335,0203,0335,0335,0203,0335,0335,0363,0335,0335,0311,0337,0313,0336,0330,",
@@ -142,39 +119,12 @@ shapestack = [
 ];
 
 
-arrow = "0313,0304,0336,0362,0203,0336,0203,0364,0335,0312,0336,0330,0306,0334,0334,0313,0337,0362,0203,0334,0334,0203,0334,0334,0203,0363,0336,0331,0304,0334,0312,0337,0313,0331,0337,0331,0337,0305,0350,";
-
-
-mytile = {
-    "index":0,
-    "name":"me",
-    "trajectory":"",
-    "shape":"0220,",
-    "message":"this is geometric social media",
-    "url":"https://www.trashrobot.org",
-    "relationships":[
-    {
-        "name":"me",
-        "index":0,
-        "relationship":"Self"
-    }
-    ]
-};
-
 board = [];
-tile1 = JSON.parse(JSON.stringify(mytile));
-
 maincanvas = document.getElementById("maincanvas");
 
 square = 100;
-if(innerWidth > innerHeight){
-    square = innerHeight;
-}
-else{
-    square = innerWidth;
-}
 
-var mainGVM = new GVM(maincanvas,square,square);
+var mainGVM = new GVM(maincanvas,innerWidth,innerHeight);
 
 
 //keyboard : asdw, zxcv, jkli uo, colors 1234567 
@@ -293,97 +243,59 @@ mainGVM.style.fill7 = "#FF00ff40";//purple
 myIndex = 0;
 
 
+function update(){
+    
+    var httpboard = new XMLHttpRequest();
+    httpboard.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            board = JSON.parse(this.responseText);
+            mainGVM.glyph = "";
+            drawmain();
+        }
+    };
+    httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
+    httpboard.send();        
+
+}
+
 var httpboard = new XMLHttpRequest();
 httpboard.onreadystatechange = function(){
     if (this.readyState == 4 && this.status == 200) {
         board = JSON.parse(this.responseText);
-        board.push(JSON.parse(JSON.stringify(mytile)));
-        myIndex = board.length - 1;
-        mainGVM.glyph = board[myIndex].trajectory + "0207,";
-        document.getElementById("nameinput").value = board[myIndex].name;
-        document.getElementById("urlinput").value = board[myIndex].url;
-        document.getElementById("messageinput").value = board[myIndex].message;
-
+        mainGVM.glyph = "";
         drawmain();
-
     }
 };
 httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
 httpboard.send();        
 
 
-document.getElementById("nameinput").onchange = function(){
-    board[myIndex].name = this.value;
-    updateboard();
-    drawmain();
-}
-document.getElementById("urlinput").onchange = function(){
-    board[myIndex].url = this.value;
-    updateboard();
-    drawmain();    
-}
-
-document.getElementById("messageinput").onchange = function(){
-    board[myIndex].message = this.value;
-    updateboard();
-    drawmain();    
-}
-
-
-
 function drawmain(){
     document.getElementById("linkbox").innerHTML = "";
     mainGVM.drawGlyph("0300,");
     for(var index = 0;index < board.length;index++){
-        if(index != myIndex){
-            mainGVM.actionSequence("0300,0305,0350,");
-            mainGVM.actionSequence(board[index].trajectory);
-            mainGVM.actionSequence(board[index].shape);
-            board[index].x = mainGVM.x;
-            board[index].y = mainGVM.y;
-            board[index].side = mainGVM.side;
-            if(board[index].side > 100){
-                var newa = document.createElement("A");
-                newa.href = board[index].url;
-                newa.innerHTML = board[index].name;
-                newa.style.left = board[index].x.toString() + "px";
-                newa.style.top = board[index].y.toString() + "px";
-                document.getElementById("linkbox").appendChild(newa);
-            }
-            if(board[index].side > 200){
-                var newspan = document.createElement("SPAN");
-                newspan.innerHTML = board[index].message;
-                newspan.style.left = board[index].x.toString() + "px";
-                newspan.style.top = (board[index].y - 50).toString() + "px";
-                document.getElementById("linkbox").appendChild(newspan);
-            }
-            
+        mainGVM.actionSequence("0300,0305,0350,");
+        mainGVM.actionSequence(board[index].trajectory);
+        mainGVM.actionSequence(board[index].shape);
+        board[index].x = mainGVM.x;
+        board[index].y = mainGVM.y;
+        board[index].side = mainGVM.side;
+        if(board[index].side > 100){
+            var newa = document.createElement("A");
+            newa.href = board[index].url;
+            newa.innerHTML = board[index].name;
+            newa.style.left = board[index].x.toString() + "px";
+            newa.style.top = board[index].y.toString() + "px";
+            document.getElementById("linkbox").appendChild(newa);
+        }
+        if(board[index].side > 200){
+            var newspan = document.createElement("SPAN");
+            newspan.innerHTML = board[index].message;
+            newspan.style.left = board[index].x.toString() + "px";
+            newspan.style.top = (board[index].y - 50).toString() + "px";
+            document.getElementById("linkbox").appendChild(newspan);
         }
     }
-    mainGVM.actionSequence("0300,0305,0350,");
-    mainGVM.actionSequence(board[myIndex].trajectory);
-    mainGVM.actionSequence(arrow);
-    mainGVM.actionSequence(board[myIndex].shape);
-    board[myIndex].x = mainGVM.x;
-    board[myIndex].y = mainGVM.y;
-    board[myIndex].side = mainGVM.side;
-    if(board[myIndex].side > 100){
-        var newa = document.createElement("A");
-        newa.href = board[myIndex].url;
-        newa.innerHTML = board[myIndex].name;
-        newa.style.left = board[myIndex].x.toString() + "px";
-        newa.style.top = board[myIndex].y.toString() + "px";
-        document.getElementById("linkbox").appendChild(newa);
-    }
-    if(board[myIndex].side > 200){
-        var newspan = document.createElement("SPAN");
-        newspan.innerHTML = board[myIndex].message;
-        newspan.style.left = board[myIndex].x.toString() + "px";
-        newspan.style.top = (board[myIndex].y - 50).toString() + "px";
-        document.getElementById("linkbox").appendChild(newspan);
-    }
-
-    
 }
 
 
@@ -394,8 +306,8 @@ document.getElementById("actioninput").onkeypress = function(a) {
     this.value = "";
     mainGVM.clean();
     board[myIndex].trajectory = mainGVM.cleanGlyph;
-    drawmain();
-    updateboard();
+//    drawmain();
+    update();
 }
 
 
@@ -408,8 +320,8 @@ document.getElementById("actioninput").onkeydown = function(a) {
 
     mainGVM.clean();
     board[myIndex].trajectory = mainGVM.cleanGlyph;
-    drawmain();
-    updateboard();
+//    drawmain();
+    update();
 }
 
 if(innerWidth > innerHeight){
@@ -419,8 +331,6 @@ if(innerWidth > innerHeight){
 
 
 topcontrols  = [
-    "0330,0331,0334,0335,010,",
-    "0320,0322,0323,0324,0325,0326,0327,",
     "030,031,032,033,",
     "034,035,036,037,"
 ];
@@ -469,10 +379,7 @@ for(var index = 0;index < topcontrols.length;index++){
                 if(localaction == 023){
                     next();
                 }
-                                                    
                 mainGVM.clean();
-                board[myIndex].trajectory = mainGVM.cleanGlyph;
-                updateboard();
                 drawmain();
 
 
@@ -483,110 +390,14 @@ for(var index = 0;index < topcontrols.length;index++){
 }
 
 
-document.getElementById("cycleshape").onclick = function(){
-    newshape = "0220,";
-    if(board[myIndex].shape == "0220,"){
-        newshape = "0221,";
-    }
-    if(board[myIndex].shape == "0221,"){
-        newshape = "0222,";
-    }
-    if(board[myIndex].shape == "0222,"){
-        newshape = "0223,";
-    }
-    if(board[myIndex].shape == "0223,"){
-        newshape = "0220,";
-    }
-    board[myIndex].shape = newshape;
-    updateboard();
-    drawmain();
+function setup(){
+    frameRate(5);
 }
-
-document.getElementById("reload").onclick = function(){
-     location.reload(); 
-}
-
-document.getElementById("nukeitfromorbit").onclick = function(){
-    board = [];
-    board.push(JSON.parse(JSON.stringify(mytile)));
-    var url = "filesaver.php";        
-    var httpc = new XMLHttpRequest();
-    httpc.open("POST", url, true);
-    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php      
-    myIndex = 0;
-    drawmain();
-}
-
-function updateboard(){
-    var httpboard = new XMLHttpRequest();
-    httpboard.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {
-            oldboard = JSON.parse(this.responseText);
-            oldboard[myIndex] = board[myIndex];
-            board = oldboard;
-            for(index = 0;index < board.length;index++){
-                board[index].index = index;
-            }
-            var url = "filesaver.php";        
-            var httpc = new XMLHttpRequest();
-            httpc.open("POST", url, true);
-            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php            
-        }
-    };
-    httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
-    httpboard.send();        
+function draw(){
+    update();
 }
 
 
-function deleteme(){
-    var httpboard = new XMLHttpRequest();
-    httpboard.onreadystatechange = function(){
-        if (this.readyState == 4 && this.status == 200) {
-            oldboard = JSON.parse(this.responseText);
-            board = [];
-            myIndex = 0;
-            for(var index= 0;index < oldboard.length;index++){
-                if(index != myIndex){
-                    board.push(oldboard[index]);
-                }    
-            }
-            for(index = 0;index < board.length;index++){
-                board[index].index = index;
-            }
-            document.getElementById("actioninput").style.display = "none";
-            document.getElementById("bottomtable").style.display = "none";
-document.getElementById("bottomtable").innerHTML = "";
-
-            var url = "filesaver.php";        
-            var httpc = new XMLHttpRequest();
-            httpc.open("POST", url, true);
-            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php            
-            mainGVM.drawGlyph("0300,");
-            for(var index = 0;index < board.length;index++){
-                if(board[index].shape == "0225,"){
-                    mainGVM.actionSequence("0300,0305,0350,");
-                }
-                else{
-                    mainGVM.actionSequence("0300,0305,0350,");
-                }
-                
-                mainGVM.actionSequence(board[index].trajectory);
-                mainGVM.actionSequence(board[index].shape);
-            }
-            
-
-        }
-    };
-    httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
-    httpboard.send();        
-}
-document.getElementById("deleteme").onclick = function(){
-    //delete me!
-    deleteme();
-}
 
 </script>
 </body>
