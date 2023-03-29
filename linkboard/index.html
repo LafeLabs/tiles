@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL 
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+    <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/wAAAAD//wAA/wAAAAD/AP8A/wAApv8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFUAAARGAAIxFVUABEYAAjMRFQAARGYiIjMRAABERmZiIzEAAARERGZiMwAAAARERGYiAAAAAABERiL4PwAA+78AAPu/AAD33wAA9V8AAPVfAAD1XwAA998AAOADAADhAAAA4AAAAPAAAADwAAAA+AAAAP4AAAD/wAAA" rel="icon" type="image/x-icon" />
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+<!--geometron javascript library-->
+    <script src="jscode/geometron.js"></script>
+
+</head>
+<body>
+<a id = "readmelink" href  = "readme.html">ABOUT</a>
+<br>
+
+<table id = "buttontable">
+    <tr>
+        <td id  = "reload" class = "button">RELOAD!</td>
+        <td id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
+        <td id = "deleteme" class = "button">DELETE ME</td>
+    </tr>
+    <tr>
+        <td>NAME:</td>
+        <td><input id = "nameinput"/></td>
+    </tr>
+    <tr>
+        <td>LINK:</td>
+        <td><input id = "urlinput"/></td>
+    </tr>
+    <tr>
+        <td>MESSAGE:</td>
+        <td><input id = "messageinput"/></td>
+    </tr>
+</table>
+<div id = "linkscroll"></div>
+
+<style>
+body{
+    overflow:hidden;
+    font-family:Comic Sans MS;
+    background-color:#9f8767;
+}
+input{
+    background-color:#9f8767;
+    font-family:Comic Sans MS;
+    width:100%;
+}
+#linkscroll{
+    position:absolute;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    top:12em;
+    overflow:scroll;
+}
+a{
+}
+.linkbox{
+    border:solid;
+    background-color:#0000ff;
+    color:white;
+    font-family:courier;
+    font-size:2em;
+    margin:1em 1em 1em 1em;
+    border-width:10px;
+    border-radius:1em;
+    padding:1em 1em 1em 1em;
+    overflow:scroll;
+}
+.linkbox a{
+    display:block;
+    text-align:center;
+    font-family:Comic Sans MS;
+    font-size:3em;
+    color:#ffb6c1;
+}
+#readmelink{
+    position:absolute;
+    right:10px;
+    top:10px;
+    color:#0000ff;
+}
+#buttontable td{
+    border:solid;
+    text-align:center;
+    border-radius:5px;
+}
+#controltable{
+    position:absolute;
+    left:0px;
+    bottom:0px;
+}
+.button{
+    cursor:pointer;
+}
+.button:hover{
+    background-color:green;
+}
+.button:active{
+    background-color:yellow;
+}
+.data{
+    display:none;
+}
+#actioninput{
+    width:10px;
+}
+@media only screen and (orientation: portrait) {
+    #actioninput{
+        display:none;
+    }
+}
+</style>
+
+<script>
+
+mytile = {
+    "index":0,
+    "name":"me",
+    "message":"this is hypertext social media",
+    "url":"https://www.trashrobot.org",
+};
+
+board = [];
+tile1 = JSON.parse(JSON.stringify(mytile));
+
+
+myIndex = 0;
+
+
+var httpboard = new XMLHttpRequest();
+httpboard.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        board = JSON.parse(this.responseText);
+        board.push(JSON.parse(JSON.stringify(mytile)));
+        myIndex = board.length - 1;
+        document.getElementById("nameinput").value = board[myIndex].name;
+        document.getElementById("urlinput").value = board[myIndex].url;
+        document.getElementById("messageinput").value = board[myIndex].message;
+
+        drawmain();
+
+    }
+};
+httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
+httpboard.send();        
+
+
+document.getElementById("nameinput").onchange = function(){
+    board[myIndex].name = this.value;
+    updateboard();
+    drawmain();
+}
+document.getElementById("urlinput").onchange = function(){
+    board[myIndex].url = this.value;
+    updateboard();
+    drawmain();    
+}
+
+document.getElementById("messageinput").onchange = function(){
+    board[myIndex].message = this.value;
+    updateboard();
+    drawmain();    
+}
+
+
+
+function drawmain(){
+    document.getElementById("linkscroll").innerHTML = "";
+    for(var index = board.length - 1;index >= 0;index--){
+
+        var newdiv = document.createElement("DIV");
+        newdiv.className = "linkbox";
+        var newspan = document.createElement("SPAN");
+        newspan.innerHTML = board[index].message;
+        var newa = document.createElement("A");
+        newa.href = board[index].url;
+        newa.innerHTML = board[index].name;
+        newdiv.appendChild(newa);
+        newdiv.appendChild(newspan);
+        document.getElementById("linkscroll").appendChild(newdiv);
+    }
+}
+
+document.getElementById("reload").onclick = function(){
+     location.reload(); 
+}
+
+document.getElementById("nukeitfromorbit").onclick = function(){
+    board = [];
+    board.push(JSON.parse(JSON.stringify(mytile)));
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php      
+    myIndex = 0;
+    drawmain();
+}
+
+function updateboard(){
+    var httpboard = new XMLHttpRequest();
+    httpboard.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            oldboard = JSON.parse(this.responseText);
+            oldboard[myIndex] = board[myIndex];
+            board = oldboard;
+            for(index = 0;index < board.length;index++){
+                board[index].index = index;
+            }
+            var url = "filesaver.php";        
+            var httpc = new XMLHttpRequest();
+            httpc.open("POST", url, true);
+            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php            
+        }
+    };
+    httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
+    httpboard.send();        
+}
+
+
+function deleteme(){
+    var httpboard = new XMLHttpRequest();
+    httpboard.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            oldboard = JSON.parse(this.responseText);
+            board = [];
+            myIndex = 0;
+            for(var index= 0;index < oldboard.length;index++){
+                if(index != myIndex){
+                    board.push(oldboard[index]);
+                }    
+            }
+            for(index = 0;index < board.length;index++){
+                board[index].index = index;
+            }
+            document.getElementById("buttontable").style.display = "none";
+            var url = "filesaver.php";        
+            var httpc = new XMLHttpRequest();
+            httpc.open("POST", url, true);
+            httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php            
+
+            drawmain();
+        }
+    };
+    httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
+    httpboard.send();        
+}
+document.getElementById("deleteme").onclick = function(){
+    //delete me!
+    deleteme();
+}
+
+</script>
+</body>
+</html>
