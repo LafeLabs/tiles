@@ -196,5 +196,23 @@
         "x": 477.27272727272725,
         "y": 659.863995541737,
         "side": 39.77272727272726
+    },
+    {
+        "index": 11,
+        "name": "me",
+        "trajectory": "",
+        "shape": "0225,",
+        "message": "this is geometric social media",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 437.5,
+        "y": 437.5,
+        "side": 43.75
     }
 ]

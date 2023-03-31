@@ -405,6 +405,45 @@ document.getElementById("actioninput").onkeydown = function(a) {
     if(charCode == 010) {
         mainGVM.cursorAction(010);
     }
+    if(charCode == 040) {
+        newshape = "0220,";
+        if(board[myIndex].shape == "0220,"){
+            newshape = "0221,";
+        }
+        if(board[myIndex].shape == "0221,"){
+            newshape = "0222,";
+        }
+        if(board[myIndex].shape == "0222,"){
+            newshape = "0223,";
+        }
+        if(board[myIndex].shape == "0223,"){
+            newshape = "0220,";
+        }
+        board[myIndex].shape = newshape;
+        updateboard();
+        drawmain();
+    }
+    if(charCode == 0116){
+        // letter n
+        
+        var httpboard = new XMLHttpRequest();
+        httpboard.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                board = JSON.parse(this.responseText);
+                board.push(JSON.parse(JSON.stringify(mytile)));
+                myIndex = board.length - 1;
+                mainGVM.glyph = board[myIndex].trajectory + "0207,";
+                document.getElementById("nameinput").value = board[myIndex].name;
+                document.getElementById("urlinput").value = board[myIndex].url;
+                document.getElementById("messageinput").value = board[myIndex].message;
+        
+                drawmain();
+        
+            }
+        };
+        httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
+        httpboard.send();        
+    }
 
     mainGVM.clean();
     board[myIndex].trajectory = mainGVM.cleanGlyph;
