@@ -30,7 +30,7 @@
     <tr>
         <td id  = "reload" class = "button">RELOAD!</td>
         <td id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
-        <td id = "deleteme" class = "button">DELETE ME</td>
+        <td style = "display:none" id = "deleteme" class = "button">DELETE ME</td>
     </tr>
     <tr>
         <td>NAME:</td>
@@ -127,10 +127,11 @@ a{
 
 <script>
 
+
 mytile = {
     "index":0,
-    "name":"me",
-    "message":"this is hypertext social media",
+    "name":"TRASH ROBOT",
+    "message":"<img src  = \"https://raw.githubusercontent.com/LafeLabs/trashotron/main/trashmagic/slimezistor-sand.png\"/><A HREF = \"https://github.com/LafeLabs/trashotron/blob/main/slimezistor/README.md\">FREE SYNTHESIZER FROM TRASH!</A>",
     "url":"https://www.trashrobot.org",
 };
 
@@ -196,7 +197,19 @@ function drawmain(){
 }
 
 document.getElementById("reload").onclick = function(){
-     location.reload(); 
+    var httpboard = new XMLHttpRequest();
+    httpboard.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+            var me = board[myIndex];
+            board = JSON.parse(this.responseText);
+            board[myIndex] = me;
+            drawmain();
+        }
+    };
+    httpboard.open("GET", "fileloader.php?filename=data/board.txt", true);
+    httpboard.send();        
+
+     
 }
 
 document.getElementById("nukeitfromorbit").onclick = function(){

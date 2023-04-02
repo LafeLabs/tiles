@@ -1,8 +1,8 @@
 [
     {
         "index": 0,
-        "name": "me",
-        "message": "this is hypertext social media",
+        "name": "TRASH ROBOT",
+        "message": "<img src  = \"https://raw.githubusercontent.com/LafeLabs/trashotron/main/trashmagic/slimezistor-sand.png\"/><A HREF = \"https://github.com/LafeLabs/trashotron/blob/main/slimezistor/README.md\">FREE SYNTHESIZER FROM TRASH!</A>",
         "url": "https://www.trashrobot.org"
     }
 ]
