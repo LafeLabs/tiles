@@ -2,6 +2,42 @@
     {
         "index": 0,
         "name": "me",
+        "trajectory": "0335,0335,0335,0335,0335,0335,0335,",
+        "shape": "0220,",
+        "message": "this is geometric social media",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 387.5695328945043,
+        "y": 506.2233922046847,
+        "side": 84.94678440936949
+    },
+    {
+        "index": 1,
+        "name": "me",
+        "trajectory": "0335,0335,0335,0335,0335,",
+        "shape": "0220,",
+        "message": "this is geometric social media",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 487.4304671054955,
+        "y": 506.2233922046847,
+        "side": 84.94678440936949
+    },
+    {
+        "index": 2,
+        "name": "me",
         "trajectory": "",
         "shape": "0220,",
         "message": "this is geometric social media",
@@ -16,5 +52,59 @@
         "x": 387.5695328945044,
         "y": 368.7766077953152,
         "side": 84.94678440936949
+    },
+    {
+        "index": 3,
+        "name": "me",
+        "trajectory": "0335,0335,0335,",
+        "shape": "0220,",
+        "message": "this is geometric social media",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 518.2891928508504,
+        "y": 411.2499999999999,
+        "side": 84.94678440936949
+    },
+    {
+        "index": 4,
+        "name": "me",
+        "trajectory": "0335,0335,0335,0334,0334,",
+        "shape": "0222,",
+        "message": "this is geometric social media",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 468.3587257453547,
+        "y": 342.5266077953153,
+        "side": 64.89356881873896
+    },
+    {
+        "index": 5,
+        "name": "me",
+        "trajectory": "0335,0335,0334,0334,0334,0334,",
+        "shape": "0222,",
+        "message": "this is geometric social media",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 647.0463598144584,
+        "y": 589.7443419939174,
+        "side": 168.31720483258482
     }
 ]

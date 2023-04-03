@@ -349,13 +349,16 @@ function drawmain(){
                 newa.innerHTML = board[index].name;
                 newa.style.left = board[index].x.toString() + "px";
                 newa.style.top = board[index].y.toString() + "px";
+                newa.style.fontSize = (Math.round(board[index].side/10)).toString() + "px";
                 document.getElementById("linkbox").appendChild(newa);
             }
             if(board[index].side > 200){
                 var newspan = document.createElement("SPAN");
                 newspan.innerHTML = board[index].message;
-                newspan.style.left = board[index].x.toString() + "px";
-                newspan.style.top = (board[index].y - 50).toString() + "px";
+                newspan.style.width = (Math.round(board[index].side)).toString() + "px";
+                newspan.style.left = (board[index].x - 0.5*board[index].side).toString() + "px";
+                newspan.style.top = (board[index].y - 0.5*board[index].side).toString() + "px";
+                newspan.style.fontSize = (Math.round(board[index].side/15)).toString() + "px";
                 document.getElementById("linkbox").appendChild(newspan);
             }
             
@@ -374,13 +377,16 @@ function drawmain(){
         newa.innerHTML = board[myIndex].name;
         newa.style.left = board[myIndex].x.toString() + "px";
         newa.style.top = board[myIndex].y.toString() + "px";
+        newa.style.fontSize = (Math.round(board[myIndex].side/10)).toString() + "px";        
         document.getElementById("linkbox").appendChild(newa);
     }
     if(board[myIndex].side > 200){
         var newspan = document.createElement("SPAN");
         newspan.innerHTML = board[myIndex].message;
-        newspan.style.left = board[myIndex].x.toString() + "px";
-        newspan.style.top = (board[myIndex].y - 50).toString() + "px";
+        newspan.style.width = (Math.round(board[myIndex].side)).toString() + "px";
+        newspan.style.left = (board[myIndex].x - 0.5*board[myIndex].side).toString() + "px";
+        newspan.style.top = (board[myIndex].y - 0.5*board[myIndex].side).toString() + "px";
+        newspan.style.fontSize = (Math.round(board[myIndex].side/15)).toString() + "px";
         document.getElementById("linkbox").appendChild(newspan);
     }
 
