@@ -55,6 +55,7 @@
 <div id = "geometronbox">
 <canvas id = "maincanvas"></canvas>
 <div id = "linkbox"></div>
+<img id = "map" src = "https://raw.githubusercontent.com/LafeLabs/tiles/main/trashmagic/map.png"/>
 </div>
 
 <style>
@@ -73,6 +74,13 @@ body{
     position:absolute;
     right:0px;
     top:0px;
+    z-index:-1;
+}
+#map{
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100%;
     z-index:-1;
 }
 #linkbox{
@@ -151,7 +159,7 @@ mytile = {
     "name":"me",
     "trajectory":"",
     "shape":"0220,",
-    "message":"this is geometric social media",
+    "message":"this is geometric social media. NO WAR BUT THE MATH WAR!",
     "url":"https://www.trashrobot.org",
     "relationships":[
     {
@@ -330,9 +338,15 @@ document.getElementById("messageinput").onchange = function(){
     drawmain();    
 }
 
-
+imageScale = 10;
 
 function drawmain(){
+    document.getElementById("map").style.width = (imageScale*mainGVM.unit).toString() + "px";
+    document.getElementById("map").style.left = (mainGVM.x0 - 0.5*imageScale*mainGVM.unit).toString() + "px";
+    document.getElementById("map").style.top = (mainGVM.y0 - 0.5*imageScale*mainGVM.unit).toString() + "px";  
+    
+    document.getElementById("map").style.transform = "rotate("+ ((180*mainGVM.theta0/Math.PI) + 90).toString() + "deg)";
+    
     document.getElementById("linkbox").innerHTML = "";
     mainGVM.drawGlyph("0300,");
     for(var index = 0;index < board.length;index++){
@@ -562,6 +576,10 @@ document.getElementById("nukeitfromorbit").onclick = function(){
     httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php      
     myIndex = 0;
     mainGVM.glyph = board[myIndex].trajectory + "0207,";
+    mainGVM.x0 = mainGVM.width/2;
+    mainGVM.y0 = mainGVM.height/2;
+    mainGVM.unit = mainGVM.width*0.1;
+    mainGVM.theta0 = -Math.PI/2;
     drawmain();
     if(innerWidth>innerHeight){
         document.getElementById("actioninput").select();   
