@@ -85,8 +85,134 @@
                 "relationship": "Self"
             }
         ],
-        "x": 257.3707511801367,
-        "y": 551.0428206755315,
-        "side": 201.96924144058065
+        "x": 9.858664286353417,
+        "y": 620.2422567096402,
+        "side": 151.7424804211725
+    },
+    {
+        "index": 5,
+        "name": "me",
+        "trajectory": "",
+        "shape": "0220,",
+        "message": "this is geometric social media. NO WAR BUT THE MATH WAR!",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 387.5695328945044,
+        "y": 368.7766077953152,
+        "side": 84.94678440936949
+    },
+    {
+        "index": 6,
+        "name": "me",
+        "trajectory": "0330,0335,0335,0330,0334,0334,0334,0334,",
+        "shape": "0222,",
+        "message": "this is geometric social media. NO WAR BUT THE MATH WAR!",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 788.6776859504132,
+        "y": 154.5456650249016,
+        "side": 106.79627325598183
+    },
+    {
+        "index": 7,
+        "name": "me",
+        "trajectory": "0330,0334,0334,0330,0334,0334,",
+        "shape": "0222,",
+        "message": "this is geometric social media. NO WAR BUT THE MATH WAR!",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 573.5504741365409,
+        "y": 310.84473333889713,
+        "side": 106.79627325598183
+    },
+    {
+        "index": 8,
+        "name": "me",
+        "trajectory": "",
+        "shape": "0220,",
+        "message": "this is geometric social media. NO WAR BUT THE MATH WAR!",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 706.506402942512,
+        "y": 267.6447333388969,
+        "side": 139.79813662799094
+    },
+    {
+        "index": 9,
+        "name": "me",
+        "trajectory": "0334,0334,0334,0334,0330,0335,0335,0330,0334,0334,0334,0334,",
+        "shape": "0222,",
+        "message": "this is geometric social media. NO WAR BUT THE MATH WAR!",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 655.7217571444422,
+        "y": 563.7419382808838,
+        "side": 106.79627325598183
+    },
+    {
+        "index": 10,
+        "name": "me",
+        "trajectory": "0335,0335,0335,0335,0330,0334,0334,0330,0335,0335,0335,0335,0335,",
+        "shape": "0222,",
+        "message": "this is geometric social media. NO WAR BUT THE MATH WAR!",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 921.6336147563841,
+        "y": 563.7419382808832,
+        "side": 106.79627325598183
+    },
+    {
+        "index": 11,
+        "name": "me",
+        "trajectory": "0330,0335,0335,0330,0335,0335,0335,",
+        "shape": "0222,",
+        "message": "this is geometric social media. NO WAR BUT THE MATH WAR!",
+        "url": "https://www.trashrobot.org",
+        "relationships": [
+            {
+                "name": "me",
+                "index": 0,
+                "relationship": "Self"
+            }
+        ],
+        "x": 1084.2707495622813,
+        "y": 345.3667761066789,
+        "side": 142.14583970371183
     }
 ]
