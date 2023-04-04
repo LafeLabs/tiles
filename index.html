@@ -25,7 +25,10 @@
 
 </head>
 <body>
+    <div class = "button" id = "hidebutton">HIDE</div>
 <a id = "readmelink" href  = "readme.html">ABOUT</a>
+<h1 id = "toptext" style = "font-size:4em;position:absolute;left:0px;top:0px;text-align:center;z-index:0;right:0px">TOP TEXT</h1>
+<H1 id = "bottomtext" style = "font-size:4em;position:absolute;left:0px;bottom:0px;text-align:center;z-index:0;right:0px">BOTTOM TEXT</H1>
 <br>
 
 <input id  = "actioninput"/>
@@ -34,7 +37,7 @@
         <td id  = "reload" class = "button">RELOAD!</td>
         <td  id = "cycleshape" class = "button">CYCLE SHAPE!</td>
         <td style = "display:none" id = "deleteme" class = "button">DELETE ME!</td>
-        <td id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
+
     </tr>
     <tr>
         <td>NAME:</td>
@@ -47,6 +50,23 @@
     <tr>
         <td>MESSAGE:</td>
         <td><input id = "messageinput"/></td>
+    </tr>
+    <tr>
+        <td>MAP:</td>
+        <td>
+            <input id = "mapinput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>TOP TEXT:</td>
+        <td><input id = "toptextinput"/></td>
+    </tr>
+    <tr>
+        <td>BOTTOM TEXT:</td>
+        <td><input id = "bottomtextinput"/></td>
+    </tr>
+    <tr>
+        <td colspan="2" id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
     </tr>
 </table>
 <table id = "controltable">
@@ -64,10 +84,17 @@ body{
     background-color:#9f8767;
     font-family:Comic Sans MS;
 }
+#hidebutton{
+    position:absolute;
+    right:0px;
+    top:0px;
+    border:solid;
+    border-radius:5px;    
+}
 #readmelink{
     position:absolute;
     right:10px;
-    top:10px;
+    top:25px;
     color:#0000ff;
 }
 #geometronbox{
@@ -81,7 +108,7 @@ body{
     left:0px;
     top:0px;
     width:100%;
-    z-index:-1;
+    z-index:-3;
 }
 #linkbox{
     position:absolute;
@@ -101,11 +128,18 @@ body{
     border:solid;
     z-index:1;
 }
-
+#buttontable{
+    position:relative;
+    z-index:2;
+}
 #buttontable td{
     border:solid;
     text-align:center;
     border-radius:5px;
+}
+#buttontable input{
+    width:90%;
+    background-color:#00000000;
 }
 #controltable{
     position:absolute;
@@ -126,6 +160,9 @@ body{
 }
 #actioninput{
     width:10px;
+    position:absolute;
+    left:0px;
+    top:0px;
 }
 @media only screen and (orientation: portrait) {
     #actioninput{
@@ -654,6 +691,71 @@ document.getElementById("bottomtable").innerHTML = "";
 document.getElementById("deleteme").onclick = function(){
     //delete me!
     deleteme();
+}
+
+
+
+
+//savemapjson();
+
+function savemapjson(){
+    var url = "filesaver.php";        
+    var httpc = new XMLHttpRequest();
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc.send("data="+encodeURIComponent(JSON.stringify(mapjson,null,"    "))+"&filename=data/mapjson.txt");//send text to filesaver.php           
+}
+
+document.getElementById("toptextinput").onchange = function(){
+    mapjson.toptext = this.value;
+    document.getElementById("toptext").innerHTML = this.value;
+    savemapjson();
+}
+
+document.getElementById("bottomtextinput").onchange = function(){
+    mapjson.bottomtext = this.value;
+    document.getElementById("bottomtext").innerHTML = this.value;
+    savemapjson();
+    
+}
+
+
+document.getElementById("mapinput").onchange = function(){
+    mapjson.map = this.value;
+    document.getElementById("map").src = this.value;
+    savemapjson();
+    
+}
+
+var httpmap = new XMLHttpRequest();
+httpmap.onreadystatechange = function(){
+    if (this.readyState == 4 && this.status == 200) {
+        mapjson = JSON.parse(this.responseText);
+        document.getElementById("map").src = mapjson.map;
+        document.getElementById("toptext").innerHTML = mapjson.toptext;
+        document.getElementById("bottomtext").innerHTML = mapjson.bottomtext;
+        document.getElementById("toptextinput").value = mapjson.toptext;
+        document.getElementById("bottomtextinput").value = mapjson.bottomtext;
+        document.getElementById("mapinput").value = mapjson.map;
+        
+    }
+};
+httpmap.open("GET", "fileloader.php?filename=data/mapjson.txt", true);
+httpmap.send();   
+
+hide= false;
+document.getElementById("hidebutton").onclick = function(){
+    hide = !hide;
+    if(hide){
+        document.getElementById("buttontable").style.display = "none";
+        document.getElementById("controltable").style.display = "none";
+        
+    }
+    else{
+        document.getElementById("buttontable").style.display = "block";
+        document.getElementById("controltable").style.display = "block";
+
+    }
 }
 
 </script>
