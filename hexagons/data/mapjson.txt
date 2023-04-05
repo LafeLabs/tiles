@@ -1,0 +1,5 @@
+{
+    "toptext": "WELCOME TO ",
+    "bottomtext": "THE HONEYCOMB",
+    "map": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Sketch_Map_of_Middle-earth.svg"
+}

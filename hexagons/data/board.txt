@@ -2,24 +2,9 @@
     {
         "index": 0,
         "name": "me",
-        "trajectory": "",
+        "trajectory": "0330,0220,0335,0330,0330,0335,0335,0330,0330,0330,0331,0221,0330,0330,0222,0223,0220,0221,0222,0223,",
         "shape": "0220,",
-        "message": "this is geometric social media",
-        "url": "https://www.trashrobot.org",
-        "relationships": [
-            {
-                "name": "me",
-                "index": 0,
-                "relationship": "Self"
-            }
-        ]
-    },
-    {
-        "index": 1,
-        "name": "me",
-        "trajectory": "0330,",
-        "shape": "0220,",
-        "message": "this is geometric social media",
+        "message": "this is geometric social media. NO WAR BUT THE MATH WAR!",
         "url": "https://www.trashrobot.org",
         "relationships": [
             {
@@ -28,98 +13,8 @@
                 "relationship": "Self"
             }
         ],
-        "x": 437.50000000000006,
-        "y": 332.5,
-        "side": 60.62177826491071
-    },
-    {
-        "index": 2,
-        "name": "me",
-        "trajectory": "0335,0335,0335,0334,0330,0330,0334,0335,0334,0330,0331,0330,0331,0330,0331,0330,0330,0330,0331,0331,0331,0331,0331,0330,0330,0331,0331,0330,0330,0330,0331,0331,0331,0331,0330,0330,0330,0330,0330,0331,0331,0331,0331,",
-        "shape": "0220,",
-        "message": "this is geometric social media",
-        "url": "https://www.trashrobot.org",
-        "relationships": [
-            {
-                "name": "me",
-                "index": 0,
-                "relationship": "Self"
-            }
-        ],
-        "x": 437.49999999999994,
-        "y": 647.5,
-        "side": 60.62177826491071
-    },
-    {
-        "index": 3,
-        "name": "me",
-        "trajectory": "0333,",
-        "shape": "0220,",
-        "message": "this is geometric social media",
-        "url": "https://www.trashrobot.org",
-        "relationships": [
-            {
-                "name": "me",
-                "index": 0,
-                "relationship": "Self"
-            }
-        ],
-        "x": 528.432667397366,
-        "y": 385,
-        "side": 60.62177826491071
-    },
-    {
-        "index": 4,
-        "name": "me",
-        "trajectory": "0332,0332,",
-        "shape": "0220,",
-        "message": "this is geometric social media",
-        "url": "https://www.trashrobot.org",
-        "relationships": [
-            {
-                "name": "me",
-                "index": 0,
-                "relationship": "Self"
-            }
-        ],
-        "x": 255.6346652052679,
-        "y": 332.4999999999999,
-        "side": 60.62177826491071
-    },
-    {
-        "index": 5,
-        "name": "me",
-        "trajectory": "0330,0330,0330,0326,",
-        "shape": "0220,",
-        "message": "this is geometric social media",
-        "url": "https://www.trashrobot.org",
-        "relationships": [
-            {
-                "name": "me",
-                "index": 0,
-                "relationship": "Self"
-            }
-        ],
-        "x": 437.50000000000006,
-        "y": 122.49999999999997,
-        "side": 60.62177826491071
-    },
-    {
-        "index": 6,
-        "name": "sad",
-        "trajectory": "0327,0330,0330,0333,0333,0330,0331,0333,0332,0333,0332,0331,0331,0332,",
-        "shape": "0220,",
-        "message": "this is geometric social media",
-        "url": "https://www.trashrobot.org",
-        "relationships": [
-            {
-                "name": "me",
-                "index": 0,
-                "relationship": "Self"
-            }
-        ],
-        "x": 425.7858169382199,
-        "y": 412.97845843716107,
-        "side": 337.0520745497647
+        "x": 1016.2925327108014,
+        "y": 675.4799999999999,
+        "side": 174.24
     }
 ]

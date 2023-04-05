@@ -2,32 +2,17 @@
 
 GEOMETRIC SOCIAL MEDIA!
 
-## [localhost](http://localhost/)
-
 ### [HOME](index.html)
 
-A Board is an array of tiles. 
+When you join the board, you get at tile.  Put a name and hyperlink url in from your tile. Move your tile around by rotating it, moving it forward and back, and deleting actions until it's situated.
+Set the tile message.  
 
-A tile is an object defined as follows:
+That's all.  We join the board, get a tile, place the tile, create a link, name and message for the tile, and either join again or step back and watch as other people build out the board.  
 
-```
-{
-"index": [index of this tile in the board array],
-"name":[string. does not have to be unique.],
-"trajectory":[geometron glyph which is a string],
-"shape":[geometron glyph which is a string],
-"message":[string with maximum number of characters],
-"hyperlink":[url string with maximum number of characters],
-"relationships":[array of relationships]
-}
-```
+![](https://raw.githubusercontent.com/LafeLabs/tiles/main/trashmagic/keyboard.png)
 
-A relationship is defined as follows:
 
-```
-{
-"index":[integer, unique in each board],
-"name":[string, does not need to be unique, does not need to be the same as self-name],
-"relationship identifier":[string, max number of characters]
-}
-```
+![](https://raw.githubusercontent.com/LafeLabs/tiles/main/trashmagic/social1.png)
+
+
+![](https://upload.wikimedia.org/wikipedia/commons/1/1a/Penrose_Tiling_%28Rhombi%29.svg)

@@ -9,6 +9,7 @@
         "hypercube.html",
         "index.html",
         "keyboard.html",
+        "projector.html",
         "qrcode-page.html",
         "qrcode.html",
         "readme.html",
@@ -33,6 +34,7 @@
         "currentjson.txt",
         "dna.txt",
         "hypercube.txt",
+        "mapjson.txt",
         "symbolset.txt"
     ],
     "javascript": [

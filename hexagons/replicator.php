@@ -1,6 +1,6 @@
 <?php
 
-$dnaurl = "https://raw.githubusercontent.com/LafeLabs/tiles/main/data/dna.txt";
+$dnaurl = "https://raw.githubusercontent.com/LafeLabs/tiles/main/hexagons/data/dna.txt";
 
 if(isset($_GET["dna"])){
     $dnaurl = $_GET["dna"];
@@ -20,7 +20,7 @@ mkdir("symbolfeed");
 //mkdir("css");
 
 
-copy("https://raw.githubusercontent.com/LafeLabs/tiles/main/php/replicator.txt","replicator.php");
+copy("https://raw.githubusercontent.com/LafeLabs/tiles/main/hexagons/php/replicator.txt","replicator.php");
 
 foreach($dna->html as $value){
     

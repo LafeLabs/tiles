@@ -25,11 +25,14 @@
 
 </head>
 <body>
+<a id = "readmelink" href  = "readme.html">ABOUT</a>
+<br>
 
 <input id  = "actioninput"/>
 <table id = "buttontable">
     <tr>
         <td id  = "reload" class = "button">RELOAD!</td>
+        <td  id = "cycleshape" class = "button">CYCLE SHAPE!</td>
         <td style = "display:none" id = "deleteme" class = "button">DELETE ME!</td>
         <td id = "nukeitfromorbit" class = "button">NUKE IT FROM ORBIT!(IT'S THE ONLY WAY TO BE SURE)</td>
     </tr>
@@ -57,6 +60,12 @@
 <style>
 body{
     overflow:hidden;
+}
+#readmelink{
+    position:absolute;
+    right:10px;
+    top:10px;
+    color:#0000ff;
 }
 #geometronbox{
     position:absolute;
@@ -121,8 +130,18 @@ body{
 
 //0305,0350,0362,0203,0334,0334,0203,0334,0334,0334,0203,0334,0334,0203,0363,0334,0334,0334,
 shapestack = [
-    "0220:0312,0336,0306,0350,0334,0306,0330,0335,0335,0362,0203,0335,0203,0335,0203,0335,0203,0335,0203,0335,0203,0363,0334,0331,0337,0350,0335,0306,0336,"
+    "0220:0305,0350,0362,0203,0334,0334,0203,0334,0334,0334,0203,0334,0334,0203,0363,0334,0334,0334,0334,0311,0337,0313,0336,0330,",
+        "0221:0305,0350,0362,0203,0335,0335,0203,0335,0335,0335,0203,0335,0335,0203,0335,0335,0363,0335,0335,0311,0337,0313,0336,0330,",
+        "0222:0305,0350,0362,0203,0334,0203,0334,0334,0334,0334,0203,0334,0203,0363,0334,0334,0334,0334,0330,0334,0334,0334,0311,0336,0313,0336,0330,0337,",
+        "0223:0305,0350,0362,0203,0335,0203,0335,0335,0335,0335,0203,0335,0203,0363,0335,0335,0335,0335,0330,0335,0335,0335,0311,0336,0313,0336,0330,0337,",
+        "01220:0333,0200,0336,0330,0332,0336,0331,0337,0220,0313,0304,0336,0331,0333,0333,0337,0337,",
+        "01221:0333,0200,0336,0330,0332,0336,0331,0337,0221,0313,0304,0336,0331,0333,0333,0337,0337,",
+        "01222:0333,0200,0336,0330,0332,0336,0331,0337,0222,0304,0336,0331,0333,0333,0337,0337,",
+        "01223:0333,0200,0336,0330,0332,0336,0331,0337,0223,0313,0304,0336,0333,0331,0333,0337,0337,"
 ];
+
+
+arrow = "0313,0304,0336,0362,0203,0336,0203,0364,0335,0312,0336,0330,0306,0334,0334,0313,0337,0362,0203,0334,0334,0203,0334,0334,0203,0363,0336,0331,0304,0334,0312,0337,0313,0331,0337,0331,0337,0305,0350,";
 
 
 mytile = {
@@ -225,10 +244,10 @@ keyboard = [
     "0136:0177,",
     "0137:0177,",
     "0140:0177,",
-    "0141:0332,",
+    "0141:0334,",
     "0142:0177,",
     "0143:0222,",
-    "0144:0333,",
+    "0144:0335,",
     "0145:0177,",
     "0146:0333,",
     "0147:0177,",
@@ -312,11 +331,11 @@ document.getElementById("messageinput").onchange = function(){
 
 
 function drawmain(){
-    document.getElementById("linkbox").innerHTML = 0;
+    document.getElementById("linkbox").innerHTML = "";
     mainGVM.drawGlyph("0300,");
     for(var index = 0;index < board.length;index++){
         if(index != myIndex){
-            mainGVM.actionSequence("0300,0306,");
+            mainGVM.actionSequence("0300,0305,0350,");
             mainGVM.actionSequence(board[index].trajectory);
             mainGVM.actionSequence(board[index].shape);
             board[index].x = mainGVM.x;
@@ -340,8 +359,9 @@ function drawmain(){
             
         }
     }
-    mainGVM.actionSequence("0300,0306,");
+    mainGVM.actionSequence("0300,0305,0350,");
     mainGVM.actionSequence(board[myIndex].trajectory);
+    mainGVM.actionSequence(arrow);
     mainGVM.actionSequence(board[myIndex].shape);
     board[myIndex].x = mainGVM.x;
     board[myIndex].y = mainGVM.y;
@@ -462,6 +482,24 @@ for(var index = 0;index < topcontrols.length;index++){
 }
 
 
+document.getElementById("cycleshape").onclick = function(){
+    newshape = "0220,";
+    if(board[myIndex].shape == "0220,"){
+        newshape = "0221,";
+    }
+    if(board[myIndex].shape == "0221,"){
+        newshape = "0222,";
+    }
+    if(board[myIndex].shape == "0222,"){
+        newshape = "0223,";
+    }
+    if(board[myIndex].shape == "0223,"){
+        newshape = "0220,";
+    }
+    board[myIndex].shape = newshape;
+    updateboard();
+    drawmain();
+}
 
 document.getElementById("reload").onclick = function(){
      location.reload(); 
@@ -474,7 +512,8 @@ document.getElementById("nukeitfromorbit").onclick = function(){
     var httpc = new XMLHttpRequest();
     httpc.open("POST", url, true);
     httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php         
+    httpc.send("data="+encodeURIComponent(JSON.stringify(board,null,"    "))+"&filename=data/board.txt");//send text to filesaver.php      
+    myIndex = 0;
     drawmain();
 }
 
